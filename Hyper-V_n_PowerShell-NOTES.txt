@@ -1,0 +1,68 @@
+Goal : Create n. Run Preseeded VM
+
+
+### Browser Dumps
+
+#### Day 1
+
+* [win 10 modify iso powershell - Google Search](https://www.google.com/search?ei=NGK0WqbhC8zq_AaD0rXwDw&q=win+10+modify+iso+powershell&oq=win+10+modify+iso+powershell&gs_l=psy-ab.3...9017.10911.0.11186.11.11.0.0.0.0.139.934.3j6.9.0....0...1c.1.64.psy-ab..2.8.849...33i22i29i30k1j33i21k1.0.UtIq9hWcTUY)
+* [Peter Hinchley : Update an ISO using PowerShell](https://hinchley.net/articles/update-an-iso-using-powershell/)
+* [Download and install the Windows ADK | Microsoft Docs](https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install)
+* [What's new in the Windows ADK and ADK tools | Microsoft Docs](https://docs.microsoft.com/en-us/windows-hardware/get-started/what-s-new-in-kits-and-tools)
+* [create ubuntu preseed - Google Search](https://www.google.com/search?q=create+ubuntu+preseed&oq=create+ubuntu+preseed&aqs=chrome..69i57j0l2.5430j0j4&sourceid=chrome&ie=UTF-8)
+* [B.3. Creating a preconfiguration file](https://help.ubuntu.com/lts/installation-guide/s390x/apbs03.html)
+* [Cobbler/Preseed - Community Help Wiki](https://help.ubuntu.com/community/Cobbler/Preseed)
+* [How to create ubuntu installation preseed file - Ask Ubuntu](https://askubuntu.com/questions/595826/how-to-create-ubuntu-installation-preseed-file)
+* [HOWTO automate Debian installs with preseed · fak3r](https://fak3r.com/2011/08/18/howto-automate-debian-installs-with-preseed/)
+* [FAI - Fully Automatic Installation](http://fai-project.org/)
+
+
+* [Haos Info](http://haos.info/)
+* [setup ubuntu iso to auto install - Google Search](https://www.google.com/search?q=setup+ubuntu+iso+to+auto+install&oq=setup+ubuntu+iso+to+auto+install&aqs=chrome..69i57.8311j0j8&sourceid=chrome&ie=UTF-8)
+* [4.6. Automatic Installation](https://help.ubuntu.com/lts/installation-guide/i386/ch04s06.html)
+* [B.2. Using preseeding](https://help.ubuntu.com/lts/installation-guide/i386/apbs02.html)
+* [https://help.ubuntu.com/lts/installation-guide/example-preseed.txt](https://help.ubuntu.com/lts/installation-guide/example-preseed.txt)
+* [B.3. Creating a preconfiguration file](https://help.ubuntu.com/lts/installation-guide/i386/apbs03.html)
+* [B.4. Contents of the preconfiguration file (for xenial)](https://help.ubuntu.com/lts/installation-guide/i386/apbs04.html)
+* [system installation - How do I create a completely unattended install of Ubuntu? - Ask Ubuntu](https://askubuntu.com/questions/122505/how-do-i-create-a-completely-unattended-install-of-ubuntu)
+
+
+* [powershell hyper-v - Google Search](https://www.google.com/search?q=powershell+hyper-v&oq=powershell+hyper-v&aqs=chrome.0.0l6.4351j0j8&sourceid=chrome&ie=UTF-8)
+* [Hyper-V and PowerShell: The Basics - Simple Talk](https://www.red-gate.com/simple-talk/sysadmin/powershell/hyper-v-powershell-basics/)
+* [Working with Hyper-V and Windows PowerShell | Microsoft Docs](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/try-hyper-v-powershell)
+* [10 Awesome PowerShell Cmdlets for Hyper-V - Essential Hyper-V Cmdlets](https://www.altaro.com/hyper-v/10-awesome-hyper-v-cmdlets/)
+* [powershell open hyper-v machine console - Google Search](https://www.google.com/search?q=powershell+open+hyper-v+machine+console&oq=powershell+open+hyper-v+machine+console&aqs=chrome..69i57.15023j0j8&sourceid=chrome&ie=UTF-8)
+* [powershell connect to hyper-v machine - Google Search](https://www.google.com/search?ei=5GC0WpjoFIap_QaTh4GwDA&q=powershell+connect+to+hyper-v+machine&oq=powershell+connect+to+hyper-v+machine&gs_l=psy-ab.3..33i22i29i30k1l4.3364.12425.0.12730.12.12.0.0.0.0.95.998.12.12.0....0...1c.1.64.psy-ab..0.2.184....0.amnynvQKaL8)
+* [virtual machines - Full non-interactive start + connect to VM from PowerShell - Server Fault](https://serverfault.com/questions/864676/full-non-interactive-start-connect-to-vm-from-powershell)
+* [Console connect to a VM without opening the Hyper-V mmc – Off Campus](https://blogs.technet.microsoft.com/migreene/2008/04/19/console-connect-to-a-vm-without-opening-the-hyper-v-mmc/)
+* [More on the accessing the Hyper-V API from Powershell – James O'Neill's blog](https://blogs.technet.microsoft.com/jamesone/2008/04/19/more-on-the-accessing-the-hyper-v-api-from-powershell/)
+
+
+
+* [PSPad download - freeware text editor](https://www.pspad.com/en/download.php)
+* [PSPad screenshots - freeware text editor](https://www.pspad.com/en/screenshot.htm)
+* [PSPad extensions - freeware text editor](https://www.pspad.com/en/pspad-extensions.php)
+* [PSPad web graphics](https://www.pspad.com/en/banners.htm)
+* [Thanks for downloading Ubuntu Server | Ubuntu](https://www.ubuntu.com/download/server/thank-you?country=US&version=16.04.4&architecture=amd64)
+
+
+#### Day 1.5
+
+* [Hyper-V and PowerShell: The Basics - Simple Talk](https://www.red-gate.com/simple-talk/sysadmin/powershell/hyper-v-powershell-basics/)
+* [10 Awesome PowerShell Cmdlets for Hyper-V - Essential Hyper-V Cmdlets](https://www.altaro.com/hyper-v/10-awesome-hyper-v-cmdlets/)
+* [Remove-VMSwitch](https://docs.microsoft.com/en-us/powershell/module/hyper-v/remove-vmswitch?view=win10-ps)
+* [Remove-VM](https://docs.microsoft.com/en-us/powershell/module/hyper-v/remove-vm?view=win10-ps)
+* [system installation - How do I create a completely unattended install of Ubuntu? - Ask Ubuntu](https://askubuntu.com/questions/122505/how-do-i-create-a-completely-unattended-install-of-ubuntu))
+* [Peter Hinchley : Update an ISO using PowerShell](https://hinchley.net/articles/update-an-iso-using-powershell/)
+* [Block Comments in V2 | PowerShell Team Blog](https://blogs.msdn.microsoft.com/powershell/2008/06/14/block-comments-in-v2/)
+* [win 10 env var for desktop - Google Search](https://www.google.com/search?ei=v9q0WtaFFMmizwKGhJuwBw&q=win+10+env+var+for+desktop&oq=win+10+env+var+for+desktop&gs_l=psy-ab.3...4666.8049.0.8649.4.4.0.0.0.0.81.310.4.4.0....0...1c.1.64.psy-ab..0.0.0....0.VPqhWqUC79c)
+* [Recognized Environment Variables (Windows 10) | Microsoft Docs](https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-recognized-environment-variables)
+* [powershell use enviornmental vars - Google Search](https://www.google.com/search?q=powershell+use+enviornmental+vars&oq=powershell+use+enviornmental+vars&aqs=chrome..69i57j0l3.6302j0j8&sourceid=chrome&ie=UTF-8)
+* [Environment Variables in PowerShell](http://www.itprotoday.com/management-mobility/take-charge-environment-variables-powershell)
+* [windows - Save the powershell result output on the user profile that runned the script - Stack Overflow](https://stackoverflow.com/questions/18743048/save-the-powershell-result-output-on-the-user-profile-that-runned-the-script)
+* [virtual machines - Full non-interactive start + connect to VM from PowerShell - Server Fault](https://serverfault.com/questions/864676/full-non-interactive-start-connect-to-vm-from-powershell))
+* [Hyper-V and PowerShell: The Basics - Simple Talk](https://www.red-gate.com/simple-talk/sysadmin/powershell/hyper-v-powershell-basics/)
+
+* [Amazon.com: crystal bar set](https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=crystal+bar+set) *huh?*
+
+
