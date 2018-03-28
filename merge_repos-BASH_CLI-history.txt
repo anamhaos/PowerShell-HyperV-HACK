@@ -1,0 +1,64 @@
+    1  git clone https://github.com/anamhaos/burner.git
+    2  exit
+    3  git clone https://github.com/anamhaos/PowerShell-HyperV-HACK.git
+    4  exit
+    5  git clone https://github.com/netson/ubuntu-unattended.git
+    6  cd ubuntu-unattended/
+    7  exit
+    8  git clone https://github.com/mukeshshende/linux.git
+    9  cd linux/
+   10  git remote set-url origin https://github.com/anamhaos/linux.git
+   11  git push -u origin master
+   12  cd ..
+   13  cd ubuntu-unattended/
+   14  git remote set-url origin https://github.com/anamhaos/ubuntu-unattended.git
+   15  git remote push -u origin master
+   16  git push -u origin master
+   17  cd ..
+   18  mkdir merger
+   19  cd merger/
+   20  git init
+   21  dir > deleteme.txt
+   22  git add .
+   23  git commit -m 'Initial commit B4 merge of repositories'
+   24  git config --global user.email 'benjaminhaos@gmail.com'
+   25  git config --global user.name 'Benjamin Haos'
+   26  git commit -m 'Initial commit B4 merge of repositories'
+   27  git remote add -f repo_one https://github.com/anamhaos/linux.git
+   28  git merge repo_one/master
+   29  git merge old_a/master --allow-unrelated-histories
+   30  git merge --allow-unrelated-histories old_a/master
+   31  git merge --allow-unrelated-histories repo_one/master
+   32  git rm .\deleteme.txt
+   33  git rm ./deleteme.txt 
+   34  git commit -m “Clean up initial file”
+   35  git commit -m 'Clean up initial file'
+   36  mkdir linux
+   37  git commit -m 'Move files into aproriate directory'
+   38  git add .
+   39  git commit -m 'Move files into aproriate directory'
+   40  git remote add -f repo_two https://github.com/anamhaos/ubuntu-unattended.git
+   41  git merge --allow-unrelated-histories repo_two/master
+   42  git add .
+   43  git commit -m 'Add next repo and move files into apropriate directory.'
+   44  exit
+   45  CD ..
+   46  cd ..
+   47  cd merger/
+   48  git remote add -f repo_tre https://github.com/anamhaos/PowerShell-HyperV-HACK
+   49  git merge --allow-unrelated-histories repo_tre/master
+   50  git add --all
+   51  git commit -m 'Merge in main repo.'
+   52  git remote -v
+   53  git remote set-url origin https://github.com/anamhaos/PowerShell-HyperV-HACK.git
+   54  git remote add origin https://github.com/anamhaos/burner2.git
+   55  git push -u origin master
+   56  git remote set-url origin https://github.com/anamhaos/PowerShell-HyperV-HACK.git
+   57  git push -u origin master
+   58  cd ..
+   59  cd PowerShell-HyperV-HACK/
+   60  git pull --all
+   61  git remote -v
+   62  exit
+   63  history
+   64  history > merge_repos-BASH_CLI-history.txt
