@@ -116,10 +116,10 @@ fi
 
 # ask the user questions about his/her preferences
 read -ep " please enter your preferred timezone: " -i "${timezone}" timezone
-read -ep " please enter your preferred username: " -i "netson" username
-read -sp " please enter your preferred password: " password
+read -ep " please enter your preferred username: " -i "newuser" username
+read -sp " please enter your preferred password: " -i "password" password
 printf "\n"
-read -sp " confirm your preferred password: " password2
+read -sp " confirm your preferred password: " -i "password" password2
 printf "\n"
 read -ep " Make ISO bootable via USB: " -i "yes" bootable
 
