@@ -4,6 +4,7 @@
 tmp="$HOME"  # destination folder to store the final iso file
 hostname="ubuntu"
 currentuser="$( whoami)"
+seed_file="haos.seed"
 
 # define spinner function for slow tasks
 # courtesy of http://fitnr.com/showing-a-bash-spinner.html
@@ -145,10 +146,11 @@ if [[ ! -f $tmp/$download_file ]]; then
 fi
 
 # download netson seed file
-seed_file="netson.seed"
+#seed_file="netson.seed"
+
 if [[ ! -f $tmp/$seed_file ]]; then
     echo -n " downloading $seed_file: "
-    download "https://raw.githubusercontent.com/netson/ubuntu-unattended/master/$seed_file"
+    download "https://raw.githubusercontent.com/anamhaos/PowerShell-HyperV-HACK/master/$seed_file"
 fi
 
 # install required packages
@@ -202,6 +204,7 @@ sed -i -r 's/timeout\s+[0-9]+/timeout 1/g' $tmp/iso_new/isolinux/isolinux.cfg
 
 # set late command
 
+: <<'EOC'
 if [[ $ub1604 == "yes" ]]; then
    late_command="apt-install wget; in-target wget --no-check-certificate -O /home/$username/start.sh https://github.com/netson/ubuntu-unattended/raw/master/start.sh ;\
      in-target chmod +x /home/$username/start.sh ;"
@@ -209,16 +212,19 @@ else
    late_command="chroot /target wget -O /home/$username/start.sh https://github.com/netson/ubuntu-unattended/raw/master/start.sh ;\
      chroot /target chmod +x /home/$username/start.sh ;"
 fi
+EOC
 
 
-
-# copy the netson seed file to the iso
+# copy seed file to the iso
 cp -rT $tmp/$seed_file $tmp/iso_new/preseed/$seed_file
 
+: <<'EOC'
 # include firstrun script
 echo "
 # setup firstrun script
 d-i preseed/late_command                                    string      $late_command" >> $tmp/iso_new/preseed/$seed_file
+EOC
+
 
 # generate the password hash
 pwhash=$(echo $password | mkpasswd -s -m sha-512)
@@ -236,13 +242,13 @@ seed_checksum=$(md5sum $tmp/iso_new/preseed/$seed_file)
 
 # add the autoinstall option to the menu
 sed -i "/label install/ilabel autoinstall\n\
-  menu label ^Autoinstall NETSON Ubuntu Server\n\
+  menu label ^Autoinstall Ubuntu Server\n\
   kernel /install/vmlinuz\n\
-  append file=/cdrom/preseed/ubuntu-server.seed initrd=/install/initrd.gz auto=true priority=high preseed/file=/cdrom/preseed/netson.seed preseed/file/checksum=$seed_checksum --" $tmp/iso_new/isolinux/txt.cfg
+  append file=/cdrom/preseed/ubuntu-server.seed initrd=/install/initrd.gz auto=true priority=high preseed/file=/cdrom/preseed/haos.seed preseed/file/checksum=$seed_checksum --" $tmp/iso_new/isolinux/txt.cfg
 
 echo " creating the remastered iso"
 cd $tmp/iso_new
-(mkisofs -D -r -V "NETSON_UBUNTU" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o $tmp/$new_iso_name . > /dev/null 2>&1) &
+(mkisofs -D -r -V "AUTO_UBUNTU" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o $tmp/$new_iso_name . > /dev/null 2>&1) &
 spinner $!
 
 # make iso bootable (for dd'ing to  USB stick)
