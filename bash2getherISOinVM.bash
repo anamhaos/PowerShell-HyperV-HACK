@@ -126,10 +126,12 @@ fi
 timezone="${timezone}"
 #read -ep " please enter your preferred username: " -i "newuser" username
 username="newuser"
-read -sp " please enter your preferred password: " password
-printf "\n"
-read -sp " confirm your preferred password: " password2
-printf "\n"
+#read -sp " please enter your preferred password: " password
+password="password"
+#printf "\n"
+#read -sp " confirm your preferred password: " password2
+password2="password"
+#printf "\n"
 #read -ep " Make ISO bootable via USB: " -i "yes" bootable
 bootable="yes"
 
