@@ -115,13 +115,26 @@ else
 fi
 
 # ask the user questions about his/her preferences
+
+
+timezone="${timezone}"
+username="newuser"
+password="password"
+password2="password"
+bootable="yes"
+
+
+: <<'EOC'
 read -ep " please enter your preferred timezone: " -i "${timezone}" timezone
 read -ep " please enter your preferred username: " -i "newuser" username
-read -sp " please enter your preferred password: " -i "password" password
+read -ep " please enter your preferred password: " -i "password" password
 printf "\n"
-read -sp " confirm your preferred password: " -i "password" password2
+read -ep " confirm your preferred password: " -i "password" password2
 printf "\n"
 read -ep " Make ISO bootable via USB: " -i "yes" bootable
+EOC
+
+
 
 # check if the passwords match to prevent headaches
 if [[ "$password" != "$password2" ]]; then
