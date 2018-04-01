@@ -1,6 +1,6 @@
 # Haos Preseed for Auto Install Iterative Dev
 # Command Line 1: This is necessary otherwise you will be prompted to umount /dev/sda. See Ubuntu bug #1347726.
-#d-i preseed/early_command string \
+d-i preseed/early_command string \
     umount /media || true
 
 # regional setting
@@ -80,20 +80,12 @@ d-i partman-partitioning/confirm_write_new_label            boolean     true
 d-i grub-installer/only_debian                              boolean     true
 d-i grub-installer/with_other_os                            boolean     true
 
-#############
-#
 # Post Install
-#
-#############
 # Command Line 1: Allow root to SSH.
-#d-i preseed/late_command string \
+d-i preseed/late_command string \
     sed -i '/PermitRootLogin / s/ .*/ yes/' /target/etc/ssh/sshd_config;
 
-#############
-#
 # finish installation
-#
-#############
 d-i finish-install/reboot_in_progress                       note
 d-i finish-install/keep-consoles                            boolean     false
 d-i cdrom-detect/eject                                      boolean     true

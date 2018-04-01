@@ -117,22 +117,25 @@ fi
 # ask the user questions about his/her preferences
 
 
+: <<'EOC'
 timezone="${timezone}"
 username="newuser"
 password="password"
 password2="password"
 bootable="yes"
-
-
-: <<'EOC'
-read -ep " please enter your preferred timezone: " -i "${timezone}" timezone
-read -ep " please enter your preferred username: " -i "newuser" username
-read -ep " please enter your preferred password: " -i "password" password
-printf "\n"
-read -ep " confirm your preferred password: " -i "password" password2
-printf "\n"
-read -ep " Make ISO bootable via USB: " -i "yes" bootable
 EOC
+
+
+#read -ep " please enter your preferred timezone: " -i "${timezone}" timezone
+timezone="${timezone}"
+#read -ep " please enter your preferred username: " -i "newuser" username
+username="newuser"
+read -ep " please enter your preferred password: " -i "password" password
+#printf "\n"
+read -ep " confirm your preferred password: " -i "password" password2
+#printf "\n"
+#read -ep " Make ISO bootable via USB: " -i "yes" bootable
+bootable="yes"
 
 
 
@@ -158,9 +161,7 @@ if [[ ! -f $tmp/$download_file ]]; then
 	exit 1
 fi
 
-# download netson seed file
-#seed_file="netson.seed"
-
+# download seed file
 if [[ ! -f $tmp/$seed_file ]]; then
     echo -n " downloading $seed_file: "
     download "https://raw.githubusercontent.com/anamhaos/PowerShell-HyperV-HACK/master/$seed_file"
