@@ -37,7 +37,7 @@ d-i clock-setup/utc                                         boolean     false
 d-i clock-setup/ntp                                         boolean     true
 
 # user account setup
-d-i passwd/root-login                                       boolean     true
+d-i passwd/root-login                                       boolean     false
 d-i passwd/make-user                                        boolean     true
 d-i passwd/user-fullname                                    string      {{username}}
 d-i passwd/username                                         string      {{username}}
@@ -82,7 +82,7 @@ d-i grub-installer/with_other_os                            boolean     true
 
 # Post Install
 # Command Line 1: Allow root to SSH.
-d-i preseed/late_command string \
+#d-i preseed/late_command string \
     sed -i '/PermitRootLogin / s/ .*/ yes/' /target/etc/ssh/sshd_config;
 
 # finish installation
