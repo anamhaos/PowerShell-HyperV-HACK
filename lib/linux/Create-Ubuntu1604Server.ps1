@@ -1,20 +1,64 @@
-# Setting up required variables 
-$tmp = "C:\Temp"
-$sourceDirectory = "C:\LabSources\Linux"
-$isoFile = "C:\LabSources\ISOs\ubuntu-16.04.1-server-amd64.iso"
-$isoFileRemastered = "C:\LabSources\ISOs\ubuntu-16.04.1-server-amd64-unattended.iso"
+<#
+This script takes some setup
+https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
-$seed_file = "mshende.seed"
-$hostname = 'vubuntusrv'
-$timezone = 'Asia/Kolkata'
+<# Use these two command in Admin Powershell Window to run this script.
+cd  C:\Users\bhaos\Desktop\PowerShell-HyperV-HACK\lib\linux
+.\Create-Ubuntu1604Server.ps1
+#>
 
-# Ask the user questions about user preferences
-$rootPassword = Read-Host " Please enter your preferred root password: " 
-$rootPassword2 = Read-Host " Confirm your preferred root password: "
-$username = Read-Host " Please enter your preferred username: "
-$password = Read-Host " Please enter your preferred password: " 
-$password2 = Read-Host " Confirm your preferred password: "
+# Variables for this Script 
+# ToDo: Organize these correctly.
+$temp_workspace = "$env:userprofile\Desktop\Temp"
+# ToDo: Rename this to what it actually is.
+$tmp = "$env:userprofile\Desktop\Temp\iso"
+# ToDo: Fix this so it is more portable
+$sourceDirectory = "$env:userprofile\Desktop\PowerShell-HyperV-HACK\lib\linux"
+# ToDo: Attach this to the script that downloads the ISO
+$downloadedISO="$env:userprofile\Desktop\ubuntu-16.04.4-server-amd64.iso"
+$isoFile = "$env:userprofile\Desktop\Temp\iso\ubuntu-16.04.4-server-amd64.iso"
+$isoFileRemastered = "$env:userprofile\Desktop\Temp\iso\ubuntu-16.04.4-server-amd64-unattended.iso"
 
+# Set Variables for Autorun ISO 
+
+$seed_file = "haos.seed"
+$hostname = 'tempubuntu'
+$switchname = 'HaoScripSwtch1'
+$timezone = 'US/Chicago'
+
+# VM User Variables
+$rootPassword = "password"
+$rootPassword2 = "password"
+$username = "newuser"
+$password = "password"
+$password2 = "password"
+
+
+function exit_script_correctly_completed(){
+  $useless_exit_var = Read-Host " hit return to exit" 
+
+  Stop-VM -name $hostname -Force
+  Remove-VM -Name $hostname -Force
+
+  Remove-VMSwitch $switchname 
+
+  Remove-Item $temp_workspace -Force -Recurse
+  
+  
+  Write-Host "Exiting Script" -ForegroundColor green
+  cd $env:userprofile\Desktop\PowerShell-HyperV-HACK\lib\linux
+  exit
+}
+
+function copy_iso_to_temp_dir_on_desktop(){
+  # Create needed Directory
+  #new-item -itemtype directory -path $tmp
+  Write-Host "Copying ISO" -ForegroundColor green
+  copy-item $downloadedISO -Destination $isoFile
+}
+
+
+# ToDo: Minify this.
 # Check if the passwords match and generate encrypted hash to use in preseed file 
 if ($password -eq $password2)
 {
@@ -27,7 +71,8 @@ else
     Write-host "Your passwords do not match; please restart the script and try again" -ForegroundColor Red -BackgroundColor White
     break
 }
-
+#echo 'user password hash :'
+#echo $pwhash
 # Check if the root passwords match and generate encrypted hash to use in ks.cfg file 
 if ($rootPassword -eq $rootPassword2)
 {
@@ -40,7 +85,11 @@ else
     Write-host "Your root passwords do not match; please restart the script and try again" -ForegroundColor Red -BackgroundColor White
     break
 }
+#echo 'root password hash:'
+#echo $rootPwdHash
 
+
+# ToDo: Abstract out hard-set paths
 # Creating / Verifying Required Folder Structure is available to work
 Write-Host "Creating / Verifying Required Folder Structure" -ForegroundColor Yellow
 if (-not (Test-Path $tmp)) 
@@ -68,12 +117,18 @@ else
     }
 }
 
+
+
+copy_iso_to_temp_dir_on_desktop
+
 # Mounting C:\LabSources\ISOs\ubuntu-16.04.1-server-amd64.iso file and copy content locally
 Write-Host "Mounting Original ISO" -ForegroundColor Yellow
+
 $ISODrive = (Get-DiskImage $isoFile | Get-Volume).DriveLetter
 if(! $ISODrive){
     Mount-DiskImage -ImagePath $isoFile -StorageType ISO
 }
+
 $ISODrive = (Get-DiskImage $isoFile | Get-Volume).DriveLetter
 Write-Host ("$isoFile Drive is " + $ISODrive)
 
@@ -106,28 +161,62 @@ default autoinstall
 label autoinstall
   menu label ^Automatically install Ubuntu
   kernel /install/vmlinuz
-  append file=/cdrom/preseed/ubuntu-server.seed vga=788 initrd=/install/initrd.gz ks=cdrom:/ks.cfg preseed/file=/cdrom/mshende.seed quiet --
+  append file=/cdrom/preseed/ubuntu-server.seed initrd=/install/initrd.gz auto=true priority=high preseed/file=/cdrom/haos.seed --
 "@
+#  append file=/cdrom/preseed/ubuntu-server.seed vga=788 initrd=/install/initrd.gz ks=cdrom:/ks.cfg preseed/file=/cdrom/haos.seed quiet --
 (Get-Content "$tmp\iso_org\isolinux\txt.cfg").replace('default install', $install_lable) | Set-Content "$tmp\iso_org\isolinux\txt.cfg"
 
 # Creating new ISO file at C:\LabSources\ISOs\ubuntu-16.04.1-server-amd64-unattended.iso
 Write-Host " Creating the remastered iso"
+
 Set-location "$tmp\iso_org"
-C:\LabSources\Linux\mkisofs.exe -D -r -V "UBUNTU1604SRV" -duplicates-once -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o $isoFileRemastered .
+#C:\LabSources\Linux\mkisofs.exe -D -r -V "UBUNTU1604SRV" -duplicates-once -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o $isoFileRemastered .
+C:\Users\bhaos\Desktop\PowerShell-HyperV-HACK\lib\bin\mkisofs.exe -D -r -V "UBUNTU1604SRV" -duplicates-once -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o $isoFileRemastered .
+
+
+
+
+
+
+
 
 # Create Hyper-v VM
-$vmFolder = "C:\Users\Public\Documents\Hyper-V\Virtual hard disks\Linux"
+#********************
+# Create Folder for VM Config Files(?)
+$vmFolder = "$env:userprofile\Desktop\Temp\Hyper-V\Virtual hard disks\Linux"
 New-Item -ItemType Directory -Path $vmFolder -Force | Out-Null
-$vmSwitch = Get-VMSwitch | Where-Object {$_.Name -eq 'AdvPSLabExternal'}
-New-VM -Name $hostname -NewVHDPath "$vmFolder\$hostname.vhdx" -NewVHDSizeBytes 80gb -MemoryStartupBytes 2GB
-Add-VMDvdDrive -VMName $hostname -Path $isoFileRemastered
+New-VM -Name $hostname -NewVHDPath "$vmFolder\$hostname.vhdx" -NewVHDSizeBytes 20gb -MemoryStartupBytes 2GB
+
+
+Set-VMDvdDrive -VMName $hostname -Path $isoFileRemastered
+
+# Create Virtual Switch connected to ...
+New-VMSwitch -Name "HaoScripSwtch1" -NetAdapterName "Ethernet1A"
+
+
+# Conenct to Hyper-v VM Switch
+$vmSwitch = Get-VMSwitch | Where-Object {$_.Name -eq 'HaoScripSwtch1'}
+
+
+#Add-VMDvdDrive -VMName $hostname -Path $isoFileRemastered
+
+
+
+
 $vmActiveSwitch = Get-VM -Name $hostname -ErrorAction SilentlyContinue | Get-VMNetworkAdapter -ErrorAction SilentlyContinue
+
 if (! $vmActiveSwitch.SwitchName){
     Write-Host "Adding Switch"
     Get-VM -Name $hostname | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -SwitchName $vmSwitch.Name
 }
+
+
+
+
+
+
 # Add host entry on my physical machine pointing to VM ip address to connect VM over ssh
-Add-Content $env:SystemRoot\system32\drivers\etc\hosts -Value "192.168.1.12    vubuntusrv"
+#Add-Content $env:SystemRoot\system32\drivers\etc\hosts -Value "192.168.1.12    vubuntusrv"
 # Below is line to clear the host entry after vm is discarded
 # (Get-Content "$env:SystemRoot\system32\drivers\etc\hosts") | Where-Object {$_ -ne "192.168.1.12    vubuntusrv"} | Set-Content "$env:SystemRoot\system32\drivers\etc\hosts"
 
@@ -135,5 +224,47 @@ Add-Content $env:SystemRoot\system32\drivers\etc\hosts -Value "192.168.1.12    v
 Start-VM -Name $hostname
 vmconnect.exe localhost $hostname
 
+
+
+
+
+exit_script_correctly_completed
+Write-Host "Exiting Script w. Error" -ForegroundColor red
+cd $env:userprofile\Desktop\PowerShell-HyperV-HACK\lib\linux
+exit
+
+
+
+
+
+
+
+
+
 # Connect to server once ready using putty
 # C:\LabSources\Linux\putty.exe -ssh user1@192.168.1.12
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<# Original Code KEEP THIS
+# Get User Configurable Values
+$rootPassword = Read-Host " Please enter your preferred root password: " 
+$rootPassword2 = Read-Host " Confirm your preferred root password: "
+$username = Read-Host " Please enter your preferred username: "
+$password = Read-Host " Please enter your preferred password: " 
+$password2 = Read-Host " Confirm your preferred password: "
+#>

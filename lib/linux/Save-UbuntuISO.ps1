@@ -40,7 +40,10 @@ Param(
 [ValidateSet("amd64","i386")][string]$OSbit = "amd64"
 )
 
-$isoStorageLocation = "C:\Temp"
+# Download Location
+#$isoStorageLocation = "C:\Temp"
+$isoStorageLocation = "$env:userprofile\Desktop\Temp\iso"
+
 Write-Host "Default is Download amd64 Server Operating System ISO." -ForegroundColor Cyan
 Write-Host "Run script if you want Desktop -OSType Desktop Parameter" -ForegroundColor Cyan
 Write-Host "Run script if you want 32bit ISP with -OSbit i386 Parameter" -ForegroundColor Cyan

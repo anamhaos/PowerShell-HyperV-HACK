@@ -107,6 +107,10 @@ Goal : Create n. Run Preseeded VM
 
 day 3
 
+Make ISO making Script `Create-Ubuntu1604Server.ps1` work
+Setup Powershell w. BASH
+Get mkisoof.exe
+
 * [anamhaos/linux](https://github.com/anamhaos/linux)
 * [anamhaos/ubuntu-unattended](https://github.com/anamhaos/ubuntu-unattended)
 * [fatal: refusing to merge unrelated histories - Google Search](https://www.google.com/search?q=fatal%3A+refusing+to+merge+unrelated+histories&oq=fatal%3A+refusing+to+merge+unrelated+histories&aqs=chrome..69i57j69i58.471j0j7&sourceid=chrome&ie=UTF-8)
@@ -120,3 +124,15 @@ day 3
 * [mukeshshende/linux: My Linux experiments](https://github.com/mukeshshende/linux)
 * [merge two git repositories - Google Search](https://www.google.com/search?q=merge+two+git+repositories&oq=merge+two+git+repositories&aqs=chrome..69i57j0l5.10688j0j8&sourceid=chrome&ie=UTF-8)
 * [Merging Two Git Repositories Into One Repository Without Losing File History – SaintGimp](https://saintgimp.org/2013/01/22/merging-two-git-repositories-into-one-repository-without-losing-file-history/)
+
+
+* [Terminating a script in PowerShell - Stack Overflow](https://stackoverflow.com/questions/2022326/terminating-a-script-in-powershell)
+* [How to build a CD ISO image file from the windows command line? - Stack Overflow](https://stackoverflow.com/questions/223316/how-to-build-a-cd-iso-image-file-from-the-windows-command-line)
+* [Open Source Software and Windows 32-bit: CDRTools](https://opensourcepack.blogspot.co.il/p/cdrtools.html)
+* [Error 404 (Not Found)!!1](http://osspack32.googlecode.com/files/schily-cdrtools-3.01a13.7z)
+* [The Moluccas download | SourceForge.net](https://sourceforge.net/projects/tumagcc/?source=typ_redirect)
+* [mkisofs - Google Search](https://www.google.com/search?q=mkisofs&oq=mkisofs&aqs=chrome..69i57j69i59&sourceid=chrome&ie=UTF-8)
+* [Mkisofs - OSDev Wiki](https://wiki.osdev.org/Mkisofs)
+* [Cdrtools (Cdrecord) Frequently Asked Questions](http://cdrtools.sourceforge.net/private/cdr-faq.html)
+* [cdrtools – Freecode](http://freshmeat.sourceforge.net/projects/cdrecord/)
+* [PortableApps.com download | SourceForge.net](https://sourceforge.net/projects/portableapps/?source=typ_redirect)

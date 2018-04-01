@@ -1,14 +1,36 @@
 
-# Switch to folder on desktop
-cd $env:userprofile\Desktop\PowerShell-HyperV-HACK
+Get-NetAdapter # Shows ...
+Get-VMSwitch # Shows Virtual Switches
+Get-VMHost # Shows Specs of Virtual Host
+Get-VM # Shows Virtual Machines
+vmconnect localhost '' # Open terminal for named VM as in $vmconnect localhost 'vm_name_here'
 
-# Create VM pause for input, then delete VM
-.\setup_vm.ps1
 
-# Get ip address info
-ifconfig
+Stop-VM -name "vm_name_here" -Force
+Remove-VM -Name "vm_name_here" -Force
 
+Stop-VM -name "tempubuntu" -Force
+Remove-VM -Name "tempubuntu" -Force
+
+Get-VMSwitch
+Remove-VMSwitch "HaoScripSwtch1" 
+
+
+tempubuntu
+vubuntusrv
+
+ 
 # IN PROGRESS
+
+
+
+Dismount-DiskImage -ImagePath  "$env:userprofile\Desktop\Temp\iso\ubuntu-16.04.4-server-amd64.iso\" -StorageType ISO
+
+
+
+
+
+
 
 Enable-VMIntegrationService -VMName "VMTest" -Name 'Guest Service Interface'
 

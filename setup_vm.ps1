@@ -1,11 +1,68 @@
 # Hyper-V n. PowerShell
 
+<#
+# Open Admin Windows Powershell 
+cd $env:userprofile\Desktop\PowerShell-HyperV-HACK
+.\setup_vm.ps1
+#>
+
+
+$VM_Name="TempVM"
+$VM_Switch_Name="TempSwitch"
+$Host_Net_Adapter_Name="Ethernet1A"
+$VM_Create_Workspace="$env:userprofile\Desktop\PowerShell-HyperV-HACK\VMTEMP"
+$VM_Confg_Store="$VM_Create_Workspace\confgs"
+$VM_Drive_Store="$VM_Create_Workspace\drives"
+$ISO_Name="ubuntu-16.04.4-server-amd64.iso"
+$ISO_Location="$env:userprofile\Desktop"
+$ISO_Path="$ISO_Location\$ISO_Name"
 
 # Create Virtual Switch connected to ...
-New-VMSwitch -Name "HaoScripSwtch1" -NetAdapterName "Ethernet1A"
+New-VMSwitch -Name $VM_Switch_Name -NetAdapterName $Host_Net_Adapter_Name
 
 # Create VM w. new Virtual Drive 
-New-VM -Name "VMTest" -MemoryStartupBytes 1GB -SwitchName "HaoScripSwtch1" -NewVHDPath "C:\Users\bhaos\Desktop\test\VMTest.vhdx" -NewVHDSizeBytes 20GB
+New-VM -Name $VM_Name -Path $VM_Confg_Store -MemoryStartupBytes 4GB -SwitchName $VM_Switch_Name -NewVHDPath $VM_Drive_Store\$VM_Name.vhdx -NewVHDSizeBytes 20GB
+
+# Attach iso to VM
+Set-VMDvdDrive -VMName $VM_Name -Path $ISO_Path
+###### [*](https://docs.microsoft.com/en-us/powershell/module/hyper-v/set-vmdvddrive?view=win10-ps)
+
+# Spin up that new VM
+Start-VM -name $VM_Name
+# Start a terminal connected to the VM
+vmconnect localhost $VM_Name
+###### [*](https://serverfault.com/questions/864676/full-non-interactive-start-connect-to-vm-from-powershell))
+
+
+
+
+
+read-host
+# pause, muk with the VM
+###### [*](https://hinchley.net/articles/update-an-iso-using-powershell/)
+
+
+Stop-VM -name $VM_Name -Force
+
+Remove-VM -Name $VM_Name -Force
+###### [*](https://docs.microsoft.com/en-us/powershell/module/hyper-v/remove-vm?view=win10-ps)
+
+Remove-VMSwitch $VM_Switch_Name -Force
+###### [*](https://docs.microsoft.com/en-us/powershell/module/hyper-v/remove-vmswitch?view=win10-ps)
+
+
+Remove-Item $VM_Create_Workspace -Force -Recurse
+
+
+###### [*]()
+###### [*]()
+###### [*]()
+###### [*]()
+###### [*]()
+###### [*]()
+###### [*]()
+
+
 
 # Create second Virtual Drive
 #New-VHD -Path "C:\Users\bhaos\Desktop\test\VMTest2.vhdx" -SizeBytes 10GB -Fixed
@@ -18,42 +75,7 @@ New-VM -Name "VMTest" -MemoryStartupBytes 1GB -SwitchName "HaoScripSwtch1" -NewV
 ###### [*](https://www.red-gate.com/simple-talk/sysadmin/powershell/hyper-v-powershell-basics/)
 
 # Attach iso to VM
-Set-VMDvdDrive -VMName VMTest -Path "C:\Users\bhaos\Desktop\iso\ubuntu_server_unattended.iso"
+#Set-VMDvdDrive -VMName VMTest -Path "C:\Users\bhaos\Desktop\iso\ubuntu_server_unattended.iso"
 ###### [*](https://docs.microsoft.com/en-us/powershell/module/hyper-v/set-vmdvddrive?view=win10-ps)
 
 
-
-# Spin up that new VM
-Start-VM -name VMTest
-# Start a terminal connected to the VM
-vmconnect localhost 'VMTest'
-###### [*](https://serverfault.com/questions/864676/full-non-interactive-start-connect-to-vm-from-powershell))
-
-# Get-VMSwitch
-
-
-
-
-read-host
-# pause, muk with the VM
-###### [*](https://hinchley.net/articles/update-an-iso-using-powershell/)
-
-
-
-Stop-VM -name VMTest -Force
-
-Remove-VM -Name "VMTest" -Force
-###### [*](https://docs.microsoft.com/en-us/powershell/module/hyper-v/remove-vm?view=win10-ps)
-
-Remove-VMSwitch "HaoScripSwtch1" -Force
-###### [*](https://docs.microsoft.com/en-us/powershell/module/hyper-v/remove-vmswitch?view=win10-ps)
-
-
-
-###### [*]()
-###### [*]()
-###### [*]()
-###### [*]()
-###### [*]()
-###### [*]()
-###### [*]()
