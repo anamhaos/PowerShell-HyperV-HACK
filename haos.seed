@@ -41,7 +41,7 @@ d-i clock-setup/utc                                         boolean     false
 d-i clock-setup/ntp                                         boolean     true
 
 # user account setup
-d-i passwd/root-login                                       boolean     false
+d-i passwd/root-login                                       boolean     true
 d-i passwd/make-user                                        boolean     true
 d-i passwd/user-fullname                                    string      {{username}}
 d-i passwd/username                                         string      {{username}}
@@ -51,18 +51,13 @@ d-i user-setup/allow-password-weak                          boolean     false
 d-i passwd/user-default-groups                              string      adm cdrom dialout lpadmin plugdev sambashare
 d-i user-setup/encrypt-home                                 boolean     false
 
-#############
-#
 # configure apt
-#
-#############
 d-i apt-setup/restricted                                    boolean     true
 d-i apt-setup/universe                                      boolean     true
 d-i apt-setup/backports                                     boolean     true
 d-i apt-setup/services-select                               multiselect security
 d-i apt-setup/security_host                                 string      security.ubuntu.com
 d-i apt-setup/security_path                                 string      /ubuntu
-#d-i tasksel tasksel/first                                   multiselect Basic Ubuntu server, standard system utilities, OpenSSH server
 tasksel tasksel/first                                       multiselect Basic Ubuntu server, standard system utilities, OpenSSH server
 d-i pkgsel/upgrade                                          select      safe-upgrade
 d-i pkgsel/update-policy                                    select      none
@@ -110,7 +105,7 @@ d-i grub-installer/with_other_os                            boolean     true
 #
 #############
 d-i finish-install/reboot_in_progress                       note
-d-i finish-install/keep-consoles                            boolean     false
+d-i finish-install/keep-consoles                            boolean     true
 d-i cdrom-detect/eject                                      boolean     true
 d-i debian-installer/exit/halt                              boolean     false
 d-i debian-installer/exit/poweroff                          boolean     false
