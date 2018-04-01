@@ -78,7 +78,7 @@ trus=$(fgrep Trusty $tmphtml | head -1 | awk '{print $3}')
 xenn=$(fgrep Xenial $tmphtml | head -1 | awk '{print $3}')
 
 
-
+: <<'EOC'
 # ask whether to include vmware tools or not
 while true; do
     echo " which ubuntu edition would you like to remaster:"
@@ -104,6 +104,12 @@ while true; do
         * ) echo " please answer [1], [2] or [3]";;
     esac
 done
+EOC
+
+download_file="ubuntu-$xenn-server-amd64.iso"
+download_location="http://releases.ubuntu.com/$xenn/"
+new_iso_name="ubuntu-$xenn-server-amd64-unattended.iso"
+
 
 if [ -f /etc/timezone ]; then
   timezone=`cat /etc/timezone`
@@ -114,26 +120,16 @@ else
   timezone=`find /usr/share/zoneinfo/ -type f -exec md5sum {} \; | grep "^$checksum" | sed "s/.*\/usr\/share\/zoneinfo\///" | head -n 1`
 fi
 
-# ask the user questions about his/her preferences
-
-
-: <<'EOC'
-timezone="${timezone}"
-username="newuser"
-password="password"
-password2="password"
-bootable="yes"
-EOC
-
+# ask the user for password because i can't figure out how to preset them!!(ToDo:)
 
 #read -ep " please enter your preferred timezone: " -i "${timezone}" timezone
 timezone="${timezone}"
 #read -ep " please enter your preferred username: " -i "newuser" username
 username="newuser"
-read -ep " please enter your preferred password: " -i "password" password
-#printf "\n"
-read -ep " confirm your preferred password: " -i "password" password2
-#printf "\n"
+read -sp " please enter your preferred password: " password
+printf "\n"
+read -sp " confirm your preferred password: " password2
+printf "\n"
 #read -ep " Make ISO bootable via USB: " -i "yes" bootable
 bootable="yes"
 
