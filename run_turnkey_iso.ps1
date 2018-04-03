@@ -1,6 +1,6 @@
 # Hyper-V n. PowerShell Iterative VM Tool
 
-$VM_Name="TempVM1"
+$VM_Name="TempVM2"
 $VM_Switch_Name="TempSwitch"
 $Host_Net_Adapter_Name="Ethernet1A"
 $VM_Create_Workspace="$env:userprofile\Desktop\PowerShell-HyperV-HACK\VMTEMP"
@@ -12,7 +12,7 @@ $ISO_Path="$ISO_Location\$ISO_Name"
 
 # ToDo: Make this test for switch B4 creating new one.
 # Create Virtual Switch connected to ...
-New-VMSwitch -Name $VM_Switch_Name -NetAdapterName $Host_Net_Adapter_Name
+#New-VMSwitch -Name $VM_Switch_Name -NetAdapterName $Host_Net_Adapter_Name
 # Create VM w. new Virtual Drive 
 New-VM -Name $VM_Name -Path $VM_Confg_Store -MemoryStartupBytes 4GB -SwitchName $VM_Switch_Name -NewVHDPath $VM_Drive_Store\$VM_Name.vhdx -NewVHDSizeBytes 20GB
 # Attach iso to VM
@@ -36,5 +36,5 @@ Remove-VM -Name $VM_Name -Force
 <#
 # Open Admin Windows Powershell 
 cd $env:userprofile\Desktop\PowerShell-HyperV-HACK
-.\test_iso.ps1
+.\run_turnkey_iso.ps1
 #>

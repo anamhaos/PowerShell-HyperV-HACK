@@ -35,5 +35,5 @@ Remove-Item $VM_Create_Workspace -Force -Recurse
 <#
 # Open Admin Windows Powershell 
 cd $env:userprofile\Desktop\PowerShell-HyperV-HACK
-.\setup_iterative_vm.ps1
+.\an_iterative_vm_setup.ps1
 #>

@@ -239,27 +239,6 @@ exit
 
 
 
-
-
-# Connect to server once ready using putty
-# C:\LabSources\Linux\putty.exe -ssh user1@192.168.1.12
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <# Original Code KEEP THIS
 # Get User Configurable Values
 $rootPassword = Read-Host " Please enter your preferred root password: " 
